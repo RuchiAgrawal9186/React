@@ -1,0 +1,49 @@
+1) JSX
+is HTML-like or XML-like syntax
+
+JSX (transpiled before it reaches th JS) - PARCEL - BABEL
+
+Babel - javascript compiler
+
+React.createElement => RecatElement.js Object => HTMLElement
+
+JSX is converter jsx to react.createElement and then its convert in js object
+
+JSX => React.createElement => RecatElement.js Oject => HTMLElement
+
+2) React component :- 
+    1) class based components - old based 
+    2) function based components - new based
+
+1) function based components :-
+ -> its noramal javascript function
+ -> a function which is return javascript 
+
+const HeadingComponent = () =>{
+    return <h1>this is heading</h1>
+}
+
+react element -  javascript variable
+
+const title = <h1>hello<h1>
+
+component composition -> component inside in component
+
+props -> when you to pass a data in another component dynamically its call props -> property
+
+unique key property -> whenver we rae looping in component so we have to provide unique key because if not provide id so react will re render that all component again for every re render
+
+
+two types of export/import
+
+1) default export/import  -> one file has one component want to export
+  -> export default component
+  -> import component from path 
+
+2) named   -> used in one file many thing you want to export
+  -> export const Component 
+  -> import {component} from path
+
+# react hooks -> normal javascript function
+
+whenever react state variable update react re-render components

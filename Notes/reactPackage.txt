@@ -1,0 +1,30 @@
+1) what is NPM(its not (node package manager) full form)
+-> npm does not have full form
+-> npm is manage the packages behinde the scense its    work as to manage node packages
+its basically standerd repo or bigger packages
+
+package.json is configuration  for NPM - its keep track of what is version of dependency installed
+
+Bundler -> react uses beble,web pack bundler
+
+command
+
+1)npm install -D parcel
+
+two types of dependency we can install
+1) dev dependency - for developement
+2) noramal dependency - we can use in production also
+
+package-lock.json -> its take care of exact version of dev dependency
+
+node_modules - fetch all code of our dependency(kind of database or kind of all data of our dependency code)
+
+2)npx parcel index.html - executing package
+
+3)npm install react
+
+# parcel
+dev building
+local server
+HMR - hot module Replacement
+image optimization
