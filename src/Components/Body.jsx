@@ -3,7 +3,9 @@ import RestorantCard from "./RestorantCard";
 import { cards } from "../Utils/mockData";
 
 const Body = () => {
-  const [topRatingCard, setTopRatingCard] = useState([...cards]);
+  const [restCardData, setRestCardData] = useState([]);
+  const[filterData,setFilterData]=useState([])
+  const [search, setSearch] = useState("");
 
   // after render component we want to again render we can use useEffect
 
@@ -12,7 +14,14 @@ const Body = () => {
       `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     );
     let data = await res.json();
-    console.log(data);
+    setRestCardData(
+      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setFilterData(
+      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
 
   useEffect(() => {
@@ -22,23 +31,40 @@ const Body = () => {
   // https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
   return (
     <div className="body">
-      <div className="search">search</div>
+      <div className="search">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button
+          onClick={(e) => {
+          
+            let searchData = restCardData?.filter((el) =>
+              el?.info?.name?.toLowerCase()?.includes(search?.toLowerCase())
+            );
+            setFilterData(searchData);
+          }}
+        >
+          Search
+        </button>
+      </div>
       <button
         onClick={() => {
-          const filterdCard = topRatingCard?.filter(
-            (el) => el?.card?.card?.info?.avgRating > 4.5
+          const filterdCard = restCardData?.filter(
+            (el) => el?.info?.avgRating > 4.3
           );
-          setTopRatingCard(filterdCard);
+          setFilterData(filterdCard);
         }}
       >
         Top rating
       </button>
       <div className="res-container">
-        {topRatingCard?.map((el, index) => {
+        {filterData?.map((el, index) => {
           return (
             <RestorantCard
-              resData={el?.card?.card?.info}
-              key={el?.card?.card?.info?.id}
+              resData={el?.info}
+              key={el?.info?.id}
             ></RestorantCard>
           );
         })}
