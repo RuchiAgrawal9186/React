@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 import "../index.css";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import About from "./Components/About";
+import ContactUs from "./Components/ContactUs";
+import ErrorPage from "./Components/ErrorPage";
 
 // React element = object => when we render its to DOM then its become html
 
@@ -14,11 +18,33 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header></Header>
-      <Body></Body>
+      <Outlet />
     </div>
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout></AppLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Body></Body>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>,
+      },
+    ],
+    errorElement: <ErrorPage></ErrorPage>,
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<AppLayout></AppLayout>);
+root.render(<RouterProvider router={appRouter} />);
