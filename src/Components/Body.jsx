@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RestorantCard from "./RestorantCard";
 import { cards } from "../Utils/mockData";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [restCardData, setRestCardData] = useState([]);
@@ -62,10 +63,12 @@ const Body = () => {
       <div className="res-container">
         {filterData?.map((el, index) => {
           return (
-            <RestorantCard
-              resData={el?.info}
-              key={el?.info?.id}
-            ></RestorantCard>
+            <Link to={`/restaurant/${el?.info?.id}`} key={el?.info?.id}>
+              <RestorantCard
+                resData={el?.info}
+                // key={el?.info?.id}
+              ></RestorantCard>
+            </Link>
           );
         })}
       </div>

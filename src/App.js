@@ -7,6 +7,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from "./Components/About";
 import ContactUs from "./Components/ContactUs";
 import ErrorPage from "./Components/ErrorPage";
+import RestaurentDetailsPage from "./Components/RestaurentDetailsPage";
 
 // React element = object => when we render its to DOM then its become html
 
@@ -39,6 +40,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/restaurant/:restId",
+        element: <RestaurentDetailsPage/>,
       },
     ],
     errorElement: <ErrorPage></ErrorPage>,
