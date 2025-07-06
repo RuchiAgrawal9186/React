@@ -1,13 +1,14 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "../index.css";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import About from "./Components/About";
+
 import ContactUs from "./Components/ContactUs";
 import ErrorPage from "./Components/ErrorPage";
 import RestaurentDetailsPage from "./Components/RestaurentDetailsPage";
+const About = lazy(() => import("./Components/About"));
 
 // React element = object => when we render its to DOM then its become html
 
@@ -35,7 +36,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About></About>,
+        element: (
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <About></About>
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -43,7 +48,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurant/:restId",
-        element: <RestaurentDetailsPage/>,
+        element: <RestaurentDetailsPage />,
       },
     ],
     errorElement: <ErrorPage></ErrorPage>,
