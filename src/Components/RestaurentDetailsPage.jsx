@@ -7,6 +7,7 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurentDetailsPage = () => {
   const { restId } = useParams();
   const restaurants = useRestaurantMenu(restId);
+  const [expand, setExpand] = useState({ 0: true });
   if (restaurants === null) {
     return <h1>Loading.....</h1>;
   }
@@ -26,17 +27,22 @@ const RestaurentDetailsPage = () => {
         )
       : [];
 
-  console.log(categories, "all category");
+  const handleExpand = (index) => {
+    setExpand((prev) => ({ [index]: !prev[index] }));
+  };
 
   return (
     <div className="px-4 py-6 w-6/12 mx-auto">
       <h1>{text}</h1>
 
-      {categories?.map((category) => {
+      {categories?.map((category, index) => {
         return (
           <RestaurantCategory
             key={category?.card?.card?.title}
             category={category?.card?.card}
+            handleExpand={handleExpand}
+            index={index}
+            expand={expand}
           ></RestaurantCategory>
         );
       })}

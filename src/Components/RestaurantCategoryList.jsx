@@ -3,13 +3,13 @@ import { CDN_URL } from "../Utils/constant";
 
 const RestaurantCategoryList = ({ cards }) => {
   return (
-    <div className="space-y-6">
+    <div className="py-3">
       {cards?.map((el) => {
         const { name, price, description, imageId } = el?.card?.info || {};
         return (
           <div
             key={el?.card?.info?.id}
-            className="flex justify-between items-start border-b-1 pb-4"
+            className="flex justify-between items-start border-b-1 py-4"
           >
             {/* LEFT: Info */}
             <div className="w-3/4 pr-4">
